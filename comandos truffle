@@ -1,0 +1,39 @@
+//creamos la variable app para poder llamar al contrato
+
+Election.deployed().then(function(instance) { app = instance})
+
+app.address
+app.candidate()
+
+//cambiamos el codigo para meter el map de candidatos
+
+truffle migrate --reset
+
+Election.deployed().then(function(instance) { app = instance})
+
+app.candidatesCount(1)
+
+//js es un lenguaje asincrono, el siguiente codigo equivale a var c = candidates(1)
+app.candidates(1).then(function(c) { candidate = c})
+
+//para acceder a los datos del candidato hay que hacerlo por indice
+candidate[1]
+
+//para llamar a una funcion con una address determinada (metemos los metadatos entre corchetes)
+app.vote(1, { from: '0x1f80dDc9E52448e138Eeec6287c659E25CC7e632' })
+
+//para ver las cuentas
+web3.eth.getAccounts()
+web3.eth.getAccounts().then(e => console.log(e[0]));
+
+
+[ '0x12D077CCa8886CB1AC0dc6015552D9Bc033bd8B9',
+  '0x1f80dDc9E52448e138Eeec6287c659E25CC7e632',
+  '0xe15020A30892251C9fD5f30BC073699C3595BfDB',
+  '0xFCd7E190A61Bc440c1a80Ad8fE463e24dF79B552',
+  '0x402837eFE8044392F4142f8A1257c86905D18A81',
+  '0x3DbCe907040D15Cf60Aed07fb610b12Fc565F5F4',
+  '0x668131ca7eB149ee7366D7C4E270E557c186C93D',
+  '0xbEEcc07FB978A1b11Ba270b7EA5e529C25dE85E2',
+  '0xa2908354417b5c162C493c310Dc4c4a930dA94a9',
+  '0xad5EC1Df0f4EE5e8cD64238423b7e61b13879e07' ]
